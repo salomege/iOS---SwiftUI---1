@@ -9,11 +9,13 @@ import SwiftUI
 
 struct TableView: View {
     
-    var persons: [PersonsData] = PersonsDataList.topTen
+    @State var person: [PersonsData] = PersonsDataList.topTen
+    
+
     var body: some View {
         NavigationView {
             
-            List(persons, id: \.id) { personData in
+            List(person, id: \.id) { personData in
                 ScrollView {
                     HStack {
                         Image(personData.imageName)
@@ -42,11 +44,11 @@ struct TableView: View {
             
         }
         Button(action: {
-            
+            person.removeAll()
         }, label: {
             Text("Clear Chat")
                 .font(.system(size: 20))
-                
+            
         })
         .foregroundColor(.white)
         .frame(width:224, height: 45)
